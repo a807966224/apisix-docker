@@ -18,11 +18,50 @@
 version: "3"
 
 services:
+  httpbin:
+    image: kennethreitz/httpbin:latest
+    restart: always
+    ports:
+      - "80:80"
+    networks:
+      apisix:
+
+  kt-web-0:
+    image: kt-web:v0
+    restart: always
+    depends_on:
+      - nacos-standalone-derby
+    ports:
+      - "22222:22222"
+    networks:
+      apisix:
+
+  nacos-standalone-derby:
+    image: nacos/nacos-server:latest
+    container_name: nacos-standalone-derby
+    restart: always
+    environment:
+      MODE: standalone
+      NACOS_AUTH_ENABLE: "false"
+      NACOS_AUTH_TOKEN: "YWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFh"
+      NACOS_AUTH_IDENTITY_KEY: "nacos_key"
+      NACOS_AUTH_IDENTITY_VALUE: "nacos_value"
+      JVM_XMS: 512m
+      JVM_XMX: 512m
+    ports:
+      - "8080:8080/tcp"
+      - "8848:8848/tcp"
+      - "9848:9848/tcp"
+    networks:
+      apisix:
+
   apisix:
-    image: apache/apisix:${APISIX_IMAGE_TAG:-3.14.1-debian}
+#    image: apache/apisix:${APISIX_IMAGE_TAG:-3.14.1-debian}
+    image: apache/apisix:3.14.1-alpine-with-java-plugin
     restart: always
     volumes:
       - ./apisix_conf/config.yaml:/usr/local/apisix/conf/config.yaml:ro
+      - ./apisix_conf/tmp:/tmp:rw
     depends_on:
       - etcd
     ##network_mode: host
@@ -32,6 +71,7 @@ services:
       - "9091:9091/tcp"
       - "9443:9443/tcp"
       - "9092:9092/tcp"
+      - "8088:8088/tcp"
     networks:
       apisix:
 

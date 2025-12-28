@@ -31,7 +31,7 @@ deployment:
 
     admin_key:
       - name: "admin"
-        key: edd1c9f034335f136f87ad84b625c8f1
+        key: "123456"
         role: admin                 # admin: manage all configuration data
 
       - name: "viewer"
@@ -49,3 +49,26 @@ plugin_attr:
     export_addr:
       ip: "0.0.0.0"
       port: 9091
+
+
+plugins:
+  - "real-ip"
+  - "ai"
+  - "client-control"
+  - "proxy-control"
+  - "request-id"
+  - "zipkin"
+  - "ext-plugin-pre-req"
+  - "fault-injection"
+  - "mocking"
+  - "serverless-pre-function"
+  - "response-rewrite"
+
+ext-plugin:
+  path_for_test: /tmp/runner.sock
+  cmd: ['java', '-jar', '-Xmx4g', '-Xms4g','-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005', '/usr/local/jvm-plugin-runner.jar']
+
+discovery:
+  nacos:
+    host:
+      - "http://nacos-standalone-derby:8848"
