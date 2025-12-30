@@ -63,6 +63,7 @@ plugins:
   - "mocking"
   - "serverless-pre-function"
   - "response-rewrite"
+  - "limit-count"
 
 ext-plugin:
   path_for_test: /tmp/runner.sock

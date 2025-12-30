@@ -1,0 +1,17 @@
+curl -i "http://127.0.0.1:9180/apisix/admin/routes" -H "X-API-KEY: 123456" -i -X PUT -d '
+{
+  "id": "0",
+  "uri": "/get",
+  "upstream" : {
+    "type": "roundrobin",
+    "nodes": {
+      "httpbin:80": 1,
+      "kt-web-0:22222": 1
+    },
+    "pass_host": "node",
+    "scheme": "http"
+  }
+}'
+
+curl http://localhost:9080/get
+

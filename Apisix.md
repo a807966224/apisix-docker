@@ -21,6 +21,13 @@
    c. 监控
 
 
+镜像加速
+https://github.com/tech-shrimp/docker_installer
+
+JDK镜像
+https://docker.aityp.com/image/docker.io/openjdk:21
+
+JVMS版本管理
 https://jishuzhan.net/article/2002307339295195137
 
 https://github.com/apache/apisix-java-plugin-runner.git
