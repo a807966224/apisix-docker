@@ -1,0 +1,15 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  namespace: ingress-apisix
+  name: getting-started-ip
+spec:
+  ingressClassName: apisix
+  http:
+    - name: getting-started-ip
+      match:
+        paths:
+          - /ip
+      backends:
+        - serviceName: httpbin
+          servicePort: 80
