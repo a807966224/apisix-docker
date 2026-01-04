@@ -261,3 +261,7 @@ Forwarding from [::1]:9080 -> 9080
 count_>   count_mockapi7=$(echo "$resp" | grep "mock.api7.ai" | wc -l) && \
 >   echo httpbin.org: $count_httpbin, mock.api7.ai: $count_mockapi7
 httpbin.org: 25, mock.api7.ai: 25
+
+
+暴露service到外部
+kubectl expose service prometheus-server --type=NodePort --target-port=9090 --name=prometheus-server-ext
