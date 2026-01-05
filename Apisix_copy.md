@@ -21,13 +21,6 @@
    c. 监控
 
 
-镜像加速
-https://github.com/tech-shrimp/docker_installer
-
-JDK镜像
-https://docker.aityp.com/image/docker.io/openjdk:21
-
-JVMS版本管理
 https://jishuzhan.net/article/2002307339295195137
 
 https://github.com/apache/apisix-java-plugin-runner.git
@@ -97,3 +90,5 @@ ADD apache-apisix-java-plugin-runner-0.6.0-bin.tar.gz /usr/local/
 
 docker build -t apache/apisix:3.14.1-alpine-with-java-plugin .
 
+apisix原始网站
+https://api7.ai/blog/apisix-xrpc-details-and-miltilingual#java-plugin-runner-example
