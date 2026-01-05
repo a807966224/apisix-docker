@@ -1,3 +1,5 @@
+--
+
 curl http://127.0.0.1:9180/apisix/admin/routes/999 \
   -H "X-API-KEY: 123456" \
   -X PUT -i -d '
@@ -10,4 +12,39 @@ curl http://127.0.0.1:9180/apisix/admin/routes/999 \
     }
 }'
 
-curl http://localhost:9080/nacos/get
+curl http://localhost:9080/nacos/hi
+
+
+
+
+
+
+curl http://127.0.0.1:9180/apisix/admin/routes/888 \
+  -H "X-API-KEY: 123456" \
+  -X PUT -i -d '
+{
+    "uris": ["/test/webClient"],
+    "upstream": {
+        "service_name": "kt-demo-web-22225",
+        "type": "roundrobin",
+        "discovery_type": "nacos"
+    }
+}'
+
+
+curl -i "http://127.0.0.1:9180/apisix/admin/routes" -H "X-API-KEY: 123456" -i -X PUT -d '
+{
+  "id": "887",
+  "uri": "/test/get",
+  "upstream" : {
+    "type": "roundrobin",
+    "nodes": {
+      "example-kt-web-nacos-service-22226-1:22226": 9,
+      "example-kt-web-nacos-service-22225-1:22225": 1
+    },
+    "pass_host": "node",
+    "scheme": "http"
+  }
+}'
+
+curl http://localhost:9080/test/webClient
