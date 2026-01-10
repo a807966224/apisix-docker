@@ -64,6 +64,8 @@ plugins:
   - "serverless-pre-function"
   - "response-rewrite"
   - "limit-count"
+  - "limit-conn"
+  - "ip-restriction"
 
 ext-plugin:
   path_for_test: /tmp/runner.sock

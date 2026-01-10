@@ -15,3 +15,80 @@ curl -i "http://127.0.0.1:9180/apisix/admin/routes" -H "X-API-KEY: 123456" -i -X
 
 curl http://localhost:9080/get
 
+
+-- 按照链接数（并发数）限制
+curl http://127.0.0.1:9180/apisix/admin/routes/887 \
+  -H "X-API-KEY: 123456" \
+  -X PATCH -d '
+{
+  "plugins": {
+    "limit-conn": {
+      "conn": 1,
+      "burst": 0,
+      "default_conn_delay": 0.1,
+      "rejected_code": 503,
+      "key_type": "var",
+      "key": "remote_addr"
+    }
+  }
+}'
+
+
+-- 移除限制
+curl http://127.0.0.1:9180/apisix/admin/routes/888 \
+  -H "X-API-KEY: 123456" \
+  -X PATCH -d '
+{
+  "plugins": {
+    "limit-conn": null
+  }
+}'
+
+-- 内部服务访问的时候，增加网络限制，比方说我仅允许容器内调用（172.18.0.1/24）
+
+
+
+curl http://127.0.0.1:9180/apisix/admin/routes/887 \
+  -H "X-API-KEY: 123456" \
+  -X PATCH -d '
+{
+  "plugins": {
+    "ip-restriction": {
+        "whitelist": [
+          "172.18.0.0/24"
+        ],
+        "message": "Access denied"
+      }
+  }
+}'
+
+curl http://localhost:9080/test/webClient
+
+curl http://localhost:9080/test/get
+
+curl "http://127.0.0.1:9180/apisix/admin/routes" -X PUT \
+  -H "X-API-KEY: 123456" \
+  -d '{
+    "id": "real-ip-route",
+    "uri": "/get",
+    "plugins": {
+      "real-ip": {
+        "source": "arg_realip",
+        "trusted_addresses": ["127.0.0.0/24"]
+      },
+      "response-rewrite": {
+        "headers": {
+          "remote_addr": "$remote_addr",
+          "remote_port": "$remote_port"
+        }
+      }
+    },
+    "upstream": {
+      "type": "roundrobin",
+      "nodes": {
+        "httpbin.org:80": 1
+      }
+    }
+  }'
+
+curl -i "http://127.0.0.1:9080/get?realip=1.2.3.4:9080"

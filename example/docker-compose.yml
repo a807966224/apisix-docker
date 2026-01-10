@@ -47,7 +47,7 @@ services:
       apisix:
 
   kt-web-nacos-service-22226:
-    image: kt-web-nacos-service-22226:v1
+    image: kt-web-nacos-service-22226:v2
     restart: always
     depends_on:
       - nacos-standalone-derby
