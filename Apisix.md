@@ -21,6 +21,9 @@
    c. 监控
 
 
+Idea
+https://www.ddkk.com/idea-pojie-jihuo/2025311.html
+
 镜像加速
 https://github.com/tech-shrimp/docker_installer
 

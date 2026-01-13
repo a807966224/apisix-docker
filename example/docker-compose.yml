@@ -26,25 +26,35 @@ services:
     networks:
       apisix:
 
-  kt-web-0:
-    image: kt-web:v0
-    restart: always
-    depends_on:
-      - nacos-standalone-derby
-    ports:
-      - "22222:22222"
-    networks:
-      apisix:
-
-  kt-web-nacos-service-22225:
-    image: kt-web-nacos-service-22225:v2
-    restart: always
-    depends_on:
-      - nacos-standalone-derby
-    ports:
-      - "22225:22225"
-    networks:
-      apisix:
+#  kt-web-0:
+#    image: kt-web:v0
+#    restart: always
+#    depends_on:
+#      - nacos-standalone-derby
+#    ports:
+#      - "22222:22222"
+#    networks:
+#      apisix:
+#
+#  kt-web-nacos-service-22225:
+#    image: kt-web-nacos-service-22225:v2
+#    restart: always
+#    depends_on:
+#      - nacos-standalone-derby
+#    ports:
+#      - "22225:22225"
+#    networks:
+#      apisix:
+#
+#  kt-web-nacos-service-22226:
+#    image: kt-web-nacos-service-22226:v1
+#    restart: always
+#    depends_on:
+#      - nacos-standalone-derby
+#    ports:
+#      - "22226:22226"
+#    networks:
+#      apisix:
 
   kt-web-nacos-service-22226:
     image: kt-web-nacos-service-22226:v2
@@ -57,8 +67,9 @@ services:
       apisix:
 
   nacos-standalone-derby:
+  nacos-standalone-derby-new:
     image: nacos/nacos-server:latest
-    container_name: nacos-standalone-derby
+    container_name: nacos-standalone-derby-new
     restart: always
     environment:
       MODE: standalone
@@ -76,8 +87,8 @@ services:
       apisix:
 
   apisix:
-#    image: apache/apisix:${APISIX_IMAGE_TAG:-3.14.1-debian}
-    image: apache/apisix:3.14.1-alpine-with-java-plugin
+    image: apache/apisix:${APISIX_IMAGE_TAG:-3.14.1-debian}
+#    image: apache/apisix:3.14.1-alpine-with-java-plugin
     restart: always
     volumes:
       - ./apisix_conf/config.yaml:/usr/local/apisix/conf/config.yaml:ro
