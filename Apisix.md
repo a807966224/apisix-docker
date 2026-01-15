@@ -21,6 +21,9 @@
    c. 监控
 
 
+插件
+https://apifox.com/apiskills/recommended-useful-intellij-idea-plugins/
+
 Idea
 https://www.ddkk.com/idea-pojie-jihuo/2025311.html
 
