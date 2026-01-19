@@ -48,6 +48,8 @@ Thanks for using kind! 😊
 验证集群
 kubectl get nodes
 
+k8s可视化UI
+https://www.rancher.cn/quick-start/
 
 部署 metrics-server（Windows 专用注意点）
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
