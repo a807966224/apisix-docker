@@ -1,0 +1,145 @@
+内存配置
+help -> change memory settings -> 8092
+主题
+settings -> appearance -> theme (插件：Material Theme UI)
+快捷键
+settings -> keymap -> eclipse
+设置忽略大小写提示
+settings -> editor -> general -> code completion -> match case (all letters)
+设置文件创建的注释格式
+settings -> editor -> file and code template -> includes -> File Header ->
+/**
+ * Copyright (c) ${YEAR}
+ *
+ * @author ${USER}
+ * @date ${DATE} ${TIME}
+ * @description
+ */
+开启ctrl + 滑轮调整字体大小
+settings -> editor -> general -> mouse control -> change font size with CTRL + Mouse Wheel in
+文件的编码格式设置为UTF-8
+settings -> editor -> file encoding ->
+自动导入、优化包
+settings -> editor -> general -> auto import ->
+多行显示标签页
+settings -> editor -> general -> editor tabs -> multiple rows 或者 可以考虑把标签放在左侧展示也OK
+idea 隐藏相关配置文件
+settings -> editor -> file types -> ignored file and folders -> add *.impl
+代码太长，超出字符换行
+settings -> editor -> code styles -> hard wrap at 120 columns -> wrap on typing
+设置方法的分割线
+settings -> editor -> general -> appearance -> show method separators
+配置git路径，一般来讲按照exe安装的已经会自动适配的
+settings -> 搜索git即可
+maven 配置
+堆内存大小，以及build project auto
+保存的时候自动格式化代码
+settings -> tools -> action on save ->
+配置项目级别代码格式化模板
+保证开启：Settings → Editor → Code Style → Enable EditorConfig support ✔
+直接创建.editorconf文件在项目跟目录
+
+具体内容如下
+````
+# EditorConfig is awesome: https://EditorConfig.org
+root = true
+
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+
+# =============================
+# Java（核心规则）
+# =============================
+[*.java]
+indent_style = space
+indent_size = 4
+continuation_indent_size = 8
+max_line_length = 120
+
+
+# 空行与空白
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+
+# IntelliJ IDEA 专用扩展（识别但不影响其他编辑器）
+# 大括号风格（K&R / Java 官方）
+ij_java_brace_style = end_of_line
+
+
+# if / for / while 后必须空格
+ij_java_space_before_if_parentheses = true
+ij_java_space_before_for_parentheses = true
+ij_java_space_before_while_parentheses = true
+ij_java_space_before_switch_parentheses = true
+ij_java_space_before_catch_parentheses = true
+
+
+# 运算符两侧空格
+ij_java_space_around_assignment_operators = true
+ij_java_space_around_logical_operators = true
+ij_java_space_around_equality_operators = true
+ij_java_space_around_relational_operators = true
+ij_java_space_around_additive_operators = true
+ij_java_space_around_multiplicative_operators = true
+
+
+# 逗号
+ij_java_space_after_comma = true
+ij_java_space_before_comma = false
+
+
+# import 规则（防止 *）
+ij_java_class_count_to_use_import_on_demand = 99
+ij_java_names_count_to_use_import_on_demand = 99
+
+
+# 空行规则（对齐阿里规约）
+ij_java_blank_lines_after_package = 1
+ij_java_blank_lines_after_imports = 1
+ij_java_blank_lines_around_class = 1
+ij_java_blank_lines_around_method = 1
+
+
+# 注解
+ij_java_use_override_annotation = true
+
+
+# =============================
+# XML / YML / Properties
+# =============================
+[*.{xml,yml,yaml,properties}]
+indent_style = space
+indent_size = 2
+
+
+# =============================
+# Markdown
+# =============================
+[*.md]
+trim_trailing_whitespace = false
+max_line_length = off
+
+
+# =============================
+# Shell / Script
+# =============================
+[*.sh]
+indent_style = space
+indent_size = 2
+
+````
+
+
+显示idea内存使用量
+双击shift 输入 in memory indictor 单击即可在右下角看到内存占用
+
+
+idea 的配置导出
+
+
