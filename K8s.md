@@ -267,3 +267,27 @@ httpbin.org: 25, mock.api7.ai: 25
 
 暴露service到外部
 kubectl expose service prometheus-server --type=NodePort --target-port=9090 --name=prometheus-server-ext
+
+
+
+
+
+
+
+监控套装
+https://github.com/prometheus-operator/kube-prometheus.git
+
+这个是很好的k8s工具
+https://kuboard.cn/learning/
+
+这些高质量的镜像内容
+bitnami docker images
+
+几乎所有中间件都有高质量镜像。
+
+awesome-compose
+
+官方示例集合
+
+通过宝塔面板安装堡垒机
+https://www.bt.cn/new/download.html
